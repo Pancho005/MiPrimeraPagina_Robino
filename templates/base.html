@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        
+    {% block title_head %}Base{% endblock title_head %}
+
+    </title>
+</head>
+<body>
+    <nav>
+    <a href={% url "inicio" %}>inicio</a>
+    <a href={% url "crear" %}>Crear Libro</a>
+    <a href={% url "crear autor" %}>Crear Autor</a>
+    <a href={% url "crear genero" %}>Crear Genero</a>
+    <a href={% url "listar" %}>Listar Libros</a>
+    </nav>
+
+
+    <main>
+        {% block contenido %}
+        {% endblock contenido %}
+
+    </main>
+
+
+</body>
+</html>
