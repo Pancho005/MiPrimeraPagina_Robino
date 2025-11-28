@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from inicio.models import Libro, Autor, Genero
-from inicio.forms import AgregarLibro, AgregarAutor, AgregarGenero
+from inicio.forms import AgregarLibro, AgregarAutor, AgregarGenero, BuscarLibro
+from django.views.generic.edit import UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 def inicio(request):
@@ -31,9 +33,14 @@ def agregar_libro(request):
 
 def listar_libros(request):
 
+    formulario = BuscarLibro(request.GET)
+    if formulario.is_valid():
+        titulo_a_buscar = formulario.cleaned_data.get("titulo")
+        listado_de_libros = Libro.objects.filter(titulo__icontains= titulo_a_buscar)
+
     libros = Libro.objects.all()
     
-    return render(request, "listar_libros.html", {'listado_de_libros': libros})
+    return render(request, "listar_libros.html", {'listado_de_libros': listado_de_libros, "formulario" : formulario})
 
 def agregar_autor(request):
 
@@ -71,4 +78,21 @@ def agregar_genero(request):
 
     return render(request, "agregar_genero.html",{'formulario': formulario})
 
+def ver_libro(request, libro_id):
+
+    libro = Libro.objects.get(id=libro_id)
     
+    return render(request, "ver_libro.html", {"libro": libro})
+
+
+class ActualizarLibro(UpdateView):
+
+    model = Libro
+    template_name = "actualizar_libro.html"
+    fields = "__all__"
+    success_url = reverse_lazy("listar")
+
+class EliminarLibro(DeleteView):
+    model = Libro
+    template_name = "eliminar_libro.html"
+    success_url = reverse_lazy("listar")

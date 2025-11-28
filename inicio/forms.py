@@ -18,6 +18,12 @@ class AgregarLibro(forms.ModelForm):
         model = Libro
         fields = ['titulo', 'autor']
 
+class BuscarLibro(forms.Form):
+    titulo = forms.CharField(max_length=100, required=False)
+
+
+
+
 
 """class AgregarAutor(forms.Form):
     nombre = forms.CharField(max_length=100)

@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from inicio.views import inicio, agregar_libro, otra, listar_libros, agregar_genero, agregar_autor
+from inicio.views import inicio, agregar_libro, otra, listar_libros, agregar_genero, agregar_autor, ver_libro, ActualizarLibro, EliminarLibro
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +26,8 @@ urlpatterns = [
     path('agregar-libro/', agregar_libro, name="crear"),
     path('agregar-autor/', agregar_autor, name="crear autor"),
     path('agregar-genero/', agregar_genero, name="crear genero"),
-    path('lista-libros/', listar_libros, name="listar")
+    path('lista-libros/', listar_libros, name="listar"),
+    path('ver-libro/<libro_id>/', ver_libro, name="ver"),
+    path('actualizar-libro/<pk>/', ActualizarLibro.as_view(), name="actualizar"),
+    path('eliminar-libro/<pk>/',EliminarLibro.as_view(), name="eliminar"),
 ]
