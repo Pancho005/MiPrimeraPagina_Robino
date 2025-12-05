@@ -4,6 +4,8 @@ from inicio.models import Libro, Autor, Genero
 from inicio.forms import AgregarLibro, AgregarAutor, AgregarGenero, BuscarLibro
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
@@ -15,6 +17,7 @@ def otra(request):
 
     return render(request, "otra.html")
 
+@login_required
 def agregar_libro(request):
     libro = ''
     if request.method == 'POST':

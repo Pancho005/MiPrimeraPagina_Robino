@@ -21,11 +21,8 @@ class AgregarLibro(forms.ModelForm):
 class BuscarLibro(forms.Form):
     titulo = forms.CharField(max_length=100, required=False)
 
-
-
-
-
-"""class AgregarAutor(forms.Form):
+"""
+class AgregarAutor(forms.Form):
     nombre = forms.CharField(max_length=100)
     nacionalidad = forms.CharField(max_length=100)
 
@@ -39,4 +36,4 @@ class AgregarGenero(forms.Form):
 class AgregarLibro(forms.Form):
     titulo = forms.CharField(max_length=100)
     autor = forms.CharField(max_length=100)
-   """
+"""
