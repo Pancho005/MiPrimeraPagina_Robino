@@ -21,11 +21,11 @@ def otra(request):
 def agregar_libro(request):
     libro = ''
     if request.method == 'POST':
-        formulario = AgregarLibro(request.POST)
+        formulario = AgregarLibro(request.POST, request.FILES)
         if formulario.is_valid():
             info = formulario.cleaned_data
 
-            libro = Libro(titulo=info.get('titulo'), autor=info.get('autor'))
+            libro = Libro(titulo=info.get('titulo'), autor=info.get('autor'), imagen=info.get('imagen'))
             libro.save()
             
             return redirect("listar")
@@ -95,7 +95,7 @@ class ActualizarLibro(UpdateView):
     fields = "__all__"
     success_url = reverse_lazy("listar")
 
-class EliminarLibro(DeleteView):
+class EliminarLibro(LoginRequiredMixin, DeleteView):
     model = Libro
     template_name = "eliminar_libro.html"
     success_url = reverse_lazy("listar")

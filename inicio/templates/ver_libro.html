@@ -8,5 +8,10 @@
     <li>
         Autor: {{libro.autor}}
     </li>
+    {% if libro.imagen %}
+    <li>
+        Imagen: <img src="{{libro.imagen.url}}" alt="Imagen del libro" height="200px">
+    </li>
+    {% endif %}
 </ul>    
 {% endblock contenido %}

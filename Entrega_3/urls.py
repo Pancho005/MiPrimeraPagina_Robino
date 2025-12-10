@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from inicio.views import inicio, agregar_libro, otra, listar_libros, agregar_genero, agregar_autor, ver_libro, ActualizarLibro, EliminarLibro
-from usuarios.views import iniciar_sesion 
+from usuarios.views import iniciar_sesion, registro 
 from django.contrib.auth.views import LogoutView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,5 +35,8 @@ urlpatterns = [
     path('actualizar-libro/<pk>/', ActualizarLibro.as_view(), name="actualizar"),
     path('eliminar-libro/<pk>/',EliminarLibro.as_view(), name="eliminar"),
     path('usuarios/', iniciar_sesion, name="iniciar sesion"),
-    path('usuarios/', include("usuarios.urls"))
+    path('usuarios/', include("usuarios.urls")),
+    path('registro/', registro, name="registro")
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

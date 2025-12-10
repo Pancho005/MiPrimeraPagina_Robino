@@ -3,7 +3,7 @@
 {% block title_head %}Agregar Libro{% endblock title_head %}
 {% block contenido %}
 
-    <form action={% url "crear" %} method="POST">
+    <form action={% url "crear" %} method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{formulario}}
 

@@ -13,10 +13,10 @@ class AgregarGenero(forms.ModelForm):
         fields = ['nombre']
 
 
-class AgregarLibro(forms.ModelForm):
-    class Meta:
-        model = Libro
-        fields = ['titulo', 'autor']
+class AgregarLibro(forms.Form):
+    titulo = forms.CharField(max_length=100)
+    autor = forms.CharField(max_length=100)
+    image = forms.ImageField(required=False)
 
 class BuscarLibro(forms.Form):
     titulo = forms.CharField(max_length=100, required=False)
@@ -36,4 +36,9 @@ class AgregarGenero(forms.Form):
 class AgregarLibro(forms.Form):
     titulo = forms.CharField(max_length=100)
     autor = forms.CharField(max_length=100)
+
+class AgregarLibro(forms.ModelForm):
+    class Meta:
+        model = Libro
+        fields = ['titulo', 'autor', 'imagen']
 """
