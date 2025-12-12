@@ -25,7 +25,7 @@ def agregar_libro(request):
         if formulario.is_valid():
             info = formulario.cleaned_data
 
-            libro = Libro(titulo=info.get('titulo'), autor=info.get('autor'), imagen=info.get('imagen'))
+            libro = Libro(titulo=info.get('titulo'), autor=info.get('autor'), imagen=info.get('imagen'), anio_publicacion=info.get('anio_publicacion'))
             libro.save()
             
             return redirect("listar")
@@ -99,3 +99,10 @@ class EliminarLibro(LoginRequiredMixin, DeleteView):
     model = Libro
     template_name = "eliminar_libro.html"
     success_url = reverse_lazy("listar")
+
+def acerca_de_mi(request):
+    context = {
+        "titulo": "Acerca de mí",
+        "descripcion": "Soy Francisco Robino, desarrollador en aprendizaje, con interés en Python, Django y en crear aplicaciones web."
+    }
+    return render(request, "acerca_de_mi.html", context)

@@ -4,9 +4,10 @@ class Libro(models.Model):
     titulo = models.CharField(max_length=100)
     autor = models.CharField(max_length=100)
     imagen = models.ImageField(upload_to="imagenes_libros", null=True)
+    anio_publicacion = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
-        return f'Libro ({self.id}): {self.titulo} - {self.autor}'
+        return f'Libro ({self.id}): {self.titulo} - {self.autor} - {self.anio_publicacion}'
     
 class Autor(models.Model):
     nombre = models.CharField(max_length=100)

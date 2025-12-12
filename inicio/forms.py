@@ -16,7 +16,8 @@ class AgregarGenero(forms.ModelForm):
 class AgregarLibro(forms.Form):
     titulo = forms.CharField(max_length=100)
     autor = forms.CharField(max_length=100)
-    image = forms.ImageField(required=False)
+    imagen = forms.ImageField(required=False)
+    anio_publicacion = forms.IntegerField(required=False)
 
 class BuscarLibro(forms.Form):
     titulo = forms.CharField(max_length=100, required=False)
